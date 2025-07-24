@@ -1,15 +1,27 @@
 :root {
-	--node-border-color: rgb(20, 20, 20);	
-
-	/*background: #16161e;
+	--node-border-color: rgb(20, 20, 20);
+	--red-color: #f7768e;
+	--blue-color: #7aa2f7;
+	--cyan-color: #7dcfff;
+	/*background: #16161e;--light-blue-color
+	 * background: rgb(122, 162, 247);
 	color: white;
 	*/
 
 }
+
+#details {
+	margin: 0 20px;
+	padding: 10px;
+	font-weight: 800;
+	border: solid var(--node-border-color) 2px;
+	border-radius: 5px;
+	background: var(--red-color);
+}
 .go-parent {
 	width: 100%;
 	margin: 5px;
-	background: #7dcfff;
+	background: var(--cyan-color);
 	font-size: 1em;
 	font-weight: 700;
 }
@@ -24,22 +36,6 @@ p, h3 { margin: 0}
 	}
 }
 
-.log {
-	display: flex;
-	justify-content: space-between;
-	div { 
-		background: #e0af68;
-		margin: 0 10px;
-		padding: 5px 20px;
-		border-radius: 2px;
-	}
-	.top-left-btn {
-	
-	}
-	.top-right-btn {
-		
-	}
-}
 .user-element-container {
 	display: flex;
 	padding: 5px;
@@ -71,10 +67,6 @@ p, h3 { margin: 0}
 	font-size: 1em;
 	margin: 2px;
 	justify-content: center;
-}
-
-#visualizer {
-	border: dotted green 1px;
 }
 
 div[level = '4'], div[level = '5'] {
