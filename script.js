@@ -4,6 +4,14 @@ const clean_btn = document.getElementById("clean_btn");
 const root_element = document.getElementById("root_element");
 const parent_node_btn = document.getElementById("parent_node_btn");
 
+const distributor_id_lb = document.getElementById("distributor_id_lb");
+const num_children_lb = document.getElementById("num_children_lb");
+const username_lb = document.getElementById("username_lb");
+const full_name_lb = document.getElementById("full_name_lb");
+const status_lb = document.getElementById("status_lb");
+const product_name_lb = document.getElementById("product_name_lb");
+const category_name_lb = document.getElementById("category_name_lb");
+
 const FLOOR_LIMIT = 5;
 
 const colors = {
@@ -67,8 +75,7 @@ const drawTree = () => {
 
 const iterateTree = () => {
 	let root = structure.root;
-	addDetailsTo(root_element, root);
-	recursiveElemental(root);
+	setNewRoot(root);
 }
 
 const recursiveElemental = (node, isRoot) => {
@@ -149,8 +156,19 @@ const clearSelection = () => {
 const setNewRoot = (new_root) => {
 	if(!new_root){return}
 	clearSelection();
+	setDetailsCard(new_root.value);
 	addDetailsTo(root_element, new_root);
 	recursiveElemental(new_root, true);
+}
+
+const setDetailsCard = (data) => {
+	distributor_id_lb.innerText = data.distributor_id;
+	num_children_lb.innerText = data.num_children;
+	username_lb.innerText = data.username;
+	full_name_lb.innerText = data.full_name;
+	status_lb.innerText = data.status;
+	product_name_lb.innerText = data.product_name;
+	category_name_lb.innerText = data.category_name;
 }
 
 view.addEventListener("click", (event) => {
