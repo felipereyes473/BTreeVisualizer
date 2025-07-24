@@ -2,6 +2,8 @@ const view = document.getElementById("view");
 const restart_btn = document.getElementById("restart_btn");
 const clean_btn = document.getElementById("clean_btn");
 const root_element = document.getElementById("root_element");
+const parent_node_btn = document.getElementById("parent_node_btn");
+
 const FLOOR_LIMIT = 5;
 
 const colors = {
@@ -111,6 +113,8 @@ const addDetailsTo = (element, node) => {
 }
 
 var new_root_node = {};
+var parent_node_id;
+
 const searchNewRoot = (id) => {	
 	deepSearch(structure.root, Number(id));
 	return new_root_node;
@@ -119,6 +123,7 @@ const searchNewRoot = (id) => {
 const deepSearch = (node, id) => {
 try {
 	if(node.value.distributor_id == id){
+		parent_node_id = node.value.parent_id;
 		new_root_node = node;
 	}
 	if(node.left){
@@ -141,16 +146,26 @@ const clearSelection = () => {
 	}); 
 }
 
+const setNewRoot = (new_root) => {
+	if(!new_root){return}
+	clearSelection();
+	addDetailsTo(root_element, new_root);
+	recursiveElemental(new_root, true);
+}
+
 view.addEventListener("click", (event) => {
 	let id = event.target.getAttribute("distributor_id") || event.target.parentNode.getAttribute("distributor_id");
 	if(id){
 		let new_root = searchNewRoot(id);
-		clearSelection();
-		addDetailsTo(root_element, new_root);
-		recursiveElemental(new_root, true);
+		setNewRoot(new_root);
 	}
 })
 
 restart_btn.onclick = iterateTree;
+
+parent_node_btn.addEventListener("click", () => {
+	let new_root = searchNewRoot(parent_node_id);
+	setNewRoot(new_root);
+});
 
 getBaseTree();
